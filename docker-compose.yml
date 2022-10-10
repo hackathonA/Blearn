@@ -39,7 +39,7 @@ services:
     # ローカルの/staticをコンテナの/staticにマウントする
     volumes:
       - ./Django_App:/code
-      # - ./static:/static を無効にする
+      - ./static:/static
     # ローカルの8000番ポートとコンテナの8000番ポートをつなぐ
     ports:
       - "8000:8000"
@@ -72,4 +72,4 @@ services:
         
 volumes:
   db_data:
-  # static: を無効にする
+  static:
