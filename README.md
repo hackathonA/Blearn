@@ -5,7 +5,7 @@
 
 docker-compose.ymlのあるディレクトリで以下のコマンドを実行
 
-```docker-compose up --build ```
+``` docker-compose up --build ```
 
 MySQL、Django、phpmyadmin(DBのGUIツール)の全部で3つのコンテナが立ち上がる
 
@@ -20,7 +20,7 @@ MySQL、Django、phpmyadmin(DBのGUIツール)の全部で3つのコンテナが
 
 ブラウザを開いて、以下のURLを検索バーに入力してenterキーを押すと、GUIでデーターベースが見れる
 
-`http://localhost:4000/ `
+` http://localhost:4000/ `
 
 
 データベースの変更を反映したい場合
@@ -45,5 +45,11 @@ MySQL、Django、phpmyadmin(DBのGUIツール)の全部で3つのコンテナが
 
 これで、データベースに変更を反映できました。
 
+# 開発の終了方法
 
+docker-compose.ymlのあるディレクトリで以下のコマンドを実行
+
+` docker-compose down `
+
+次に開発する際の起動は、上記のdocker-compose up -d --buildで行ってください
 
