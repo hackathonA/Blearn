@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-# osのモジュールをインポート
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -114,9 +113,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-# 言語を日本語に設定
+
 LANGUAGE_CODE = 'ja'
-# タイムゾーンをAsia/Tokyoに設定
 TIME_ZONE = 'Asia/Tokyo'
 
 USE_I18N = True
@@ -129,8 +127,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-# STATIC_ROOTを設定
-# Djangoの管理者画面にHTML、CSS、Javascriptが適用されます
+
 STATIC_ROOT = "/static/"
 STATIC_URL = "/static/"
 
