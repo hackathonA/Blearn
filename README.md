@@ -1,6 +1,42 @@
 # Blearn
 
-# 開発の仕方(コンテナが起動している前提です。起動の仕方は、下の方に書いてあります。)
+
+# Djangoでの作業は、venvを使っていいそうです!
+
+PythonのVersionは、3.10.5を使用しております。
+
+
+# 開発の終了方法
+
+docker-compose.ymlのあるディレクトリで以下のコマンドを実行
+
+` docker-compose down `
+
+次に開発する際の起動は、上記のdocker-compose up 
+
+### コンテナの起動方法
+
+docker-compose.ymlのあるディレクトリで以下のコマンドを実行
+
+``` docker-compose up -d --build ```
+
+MySQL、Django、phpmyadmin(DBのGUIツール)の全部で3つのコンテナが立ち上がる
+
+### Djangoの起動ページを見る方法
+
+ブラウザを開いて、以下のURLを検索バーに入力してenterキーを押すと、Djangoの起動ページを見れる（ロケットが飛ぶ絵）
+
+`http://localhost:8000/ `
+
+
+### phpmyadminからGUIでデータベースを見る方法
+
+ブラウザを開いて、以下のURLを検索バーに入力してenterキーを押すと、GUIでデーターベースが見れる
+
+` http://localhost:4000/ `
+
+
+# コンテナでの開発の仕方(コンテナが起動している前提です。起動の仕方は、上の方に書いてあります。)
 
 // appの作り方
 
@@ -33,32 +69,4 @@
 
 これで、データベースに変更を反映できました。
 
-# 開発の終了方法
-
-docker-compose.ymlのあるディレクトリで以下のコマンドを実行
-
-` docker-compose down `
-
-次に開発する際の起動は、上記のdocker-compose up 
-
-### コンテナの起動方法
-
-docker-compose.ymlのあるディレクトリで以下のコマンドを実行
-
-``` docker-compose up -d --build ```
-
-MySQL、Django、phpmyadmin(DBのGUIツール)の全部で3つのコンテナが立ち上がる
-
-### Djangoの起動ページを見る方法
-
-ブラウザを開いて、以下のURLを検索バーに入力してenterキーを押すと、Djangoの起動ページを見れる（ロケットが飛ぶ絵）
-
-`http://localhost:8000/ `
-
-
-### phpmyadminからGUIでデータベースを見る方法
-
-ブラウザを開いて、以下のURLを検索バーに入力してenterキーを押すと、GUIでデーターベースが見れる
-
-` http://localhost:4000/ `
 
