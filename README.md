@@ -1,9 +1,10 @@
 # Blearn
 
-
-# Djangoでの作業は、venvを使っていいそうです!
+下の方にコンテナ開発について書いてありますが、
+Djangoでの作業は、venvを使っていいそうです!
 
 PythonのVersionは、3.10.5を使用しております。
+mysqlclientのVirsionは、2.1.1を使用しております
 
 
 # 開発の終了方法
