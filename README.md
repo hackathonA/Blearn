@@ -1,29 +1,17 @@
 # Blearn
-# 開発の仕方
 
-### コンテナの起動方法
+# 開発の仕方(コンテナが起動している前提です。起動の仕方は、下の方に書いてあります。)
 
-docker-compose.ymlのあるディレクトリで以下のコマンドを実行
+// appの作り方
 
-``` docker-compose up --build ```
+``` docker-compose run app python manage.py startapp 好きなapp名 ```
 
-MySQL、Django、phpmyadmin(DBのGUIツール)の全部で3つのコンテナが立ち上がる
+// appの操作の仕方(コンテナに入るコマンドです)
 
-### Djangoの起動ページを見る方法
-
-ブラウザを開いて、以下のURLを検索バーに入力してenterキーを押すと、Djangoの起動ページを見れる（ロケットが飛ぶ絵）
-
-`http://localhost:8000/ `
+``` docker-compose exec app bash ```
 
 
-### phpmyadminからGUIでデータベースを見る方法
-
-ブラウザを開いて、以下のURLを検索バーに入力してenterキーを押すと、GUIでデーターベースが見れる
-
-` http://localhost:4000/ `
-
-
-データベースの変更を反映したい場合
+// データベースの変更を反映したい場合
 
 - 2つ方法があります。
 
@@ -52,3 +40,25 @@ docker-compose.ymlのあるディレクトリで以下のコマンドを実行
 ` docker-compose down `
 
 次に開発する際の起動は、上記のdocker-compose up 
+
+### コンテナの起動方法
+
+docker-compose.ymlのあるディレクトリで以下のコマンドを実行
+
+``` docker-compose up -d --build ```
+
+MySQL、Django、phpmyadmin(DBのGUIツール)の全部で3つのコンテナが立ち上がる
+
+### Djangoの起動ページを見る方法
+
+ブラウザを開いて、以下のURLを検索バーに入力してenterキーを押すと、Djangoの起動ページを見れる（ロケットが飛ぶ絵）
+
+`http://localhost:8000/ `
+
+
+### phpmyadminからGUIでデータベースを見る方法
+
+ブラウザを開いて、以下のURLを検索バーに入力してenterキーを押すと、GUIでデーターベースが見れる
+
+` http://localhost:4000/ `
+
