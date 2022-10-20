@@ -31,7 +31,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
-  
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     env_file:
@@ -42,7 +42,7 @@ services:
       - 4000:80
     volumes:
       - ./phpmyadmin/sessions:/sessions
-        
+
 volumes:
   db_data:
   static:
