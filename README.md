@@ -4,11 +4,11 @@
 
 // appの作り方
 
-``` docker-compose run app python manage.py startapp 好きなapp名 ```
+` docker-compose run app python manage.py startapp 好きなapp名 `
 
 // appの操作の仕方(コンテナに入るコマンドです)
 
-``` docker-compose exec app bash ```
+` docker-compose exec app bash `
 
 ※ コンテナを立ち上げた後は、modelsの情報をMySQLの方に知らせる必要があるので、以下の方法で必ず行ってください！
 
@@ -40,11 +40,17 @@
 
 // コンテナから抜け出す方法(exitは、ターミナル,GitBashに打ちます。)
 
-```exit または、ctrl+d で抜けられます。```
+`exit または、ctrl+d で抜けられます。`
 
-docker-compose.ymlのあるディレクトリで以下のコマンドを実行
+docker-compose.ymlのあるディレクトリで以下のコマンドを上から順番に実行
 
 ` docker-compose down -v `
+
+` docker rm $(docker ps -a -q) `
+
+` docker rmi $(docker images -q) `
+
+` docker system prune `
 
 
 次に開発する際の起動は、上記のdocker-compose up
@@ -53,7 +59,7 @@ docker-compose.ymlのあるディレクトリで以下のコマンドを実行
 
 docker-compose.ymlのあるディレクトリで以下のコマンドを実行
 
-``` docker-compose up -d --build ```
+` docker-compose up -d --build `
 
 MySQL、Django、phpmyadmin(DBのGUIツール)の全部で3つのコンテナが立ち上がる
 
@@ -66,7 +72,7 @@ MySQL、Django、phpmyadmin(DBのGUIツール)の全部で3つのコンテナが
 
 ### phpmyadminからGUIでデータベースを見る方法
 
-ブラウザを開いて、以下のURLを検索バーに入力してenterキーを押すと、GUIでデーターベースが見れる
+ブラウザを開いて、以下のURLを検索バーに入力してenterキーを押すと、GUIでデーターベースが見れる(migrate指定ないと、Djangoの方のデータは見れません)
 
 ` http://localhost:4000/ `
 
