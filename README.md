@@ -52,6 +52,7 @@ docker-compose.ymlのあるディレクトリで以下のコマンドを上か�
 
 ` docker system prune `
 
+docker system pruneは、選択肢を聞かれるので、yを押してください
 
 次に開発する際の起動は、上記のdocker-compose up
 
