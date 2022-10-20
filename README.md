@@ -10,6 +10,9 @@
 
 ``` docker-compose exec app bash ```
 
+※ コンテナを立ち上げた後は、modelsの情報をMySQLの方に知らせる必要があるので、以下の方法で必ず行ってください！
+
+(立ち上げの際に行うのは、migrateだけで大丈夫です)
 
 // データベースの変更を反映したい場合
 
@@ -17,9 +20,9 @@
 
 1つ目の方法は、docker-composeコマンドからapp コンテナに命令する方法
 
-1. docker-compose run app python manage.py makemigrations
+1. docker-compose exec app python manage.py makemigrations
 
-2. docker-compose run app python manage.py migrate
+2. docker-compose exec app python manage.py migrate
 
 これで、データベースに変更を反映できました。
 
@@ -35,13 +38,18 @@
 
 # 開発の終了方法
 
+// コンテナから抜け出す方法(exitは、ターミナル,GitBashに打ちます。)
+
+```exit または、ctrl+d で抜けられます。```
+
 docker-compose.ymlのあるディレクトリで以下のコマンドを実行
 
-` docker-compose down `
+` docker-compose down -v `
 
-次に開発する際の起動は、上記のdocker-compose up 
 
-### コンテナの起動方法
+次に開発する際の起動は、上記のdocker-compose up
+
+# コンテナの起動方法
 
 docker-compose.ymlのあるディレクトリで以下のコマンドを実行
 
