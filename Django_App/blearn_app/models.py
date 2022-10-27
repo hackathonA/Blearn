@@ -1,6 +1,7 @@
+from email.policy import default
 from django.db import models
 
-
-class TestModel(models.Model):
-    title = models.CharField(max_length=255)
-    text = models.TextField(max_length=1000)
+# Create your models here.
+class BoardModel(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
