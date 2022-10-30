@@ -118,10 +118,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 
-# STATIC_ROOT = "/static/"
-# STATIC_URL = "/static/"
-STATIC_URL = '/sta/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = "/static/"
+STATIC_URL = "/static/"
 STATICFILES_DIRS = [str(BASE_DIR / 'static')]
 
 # Default primary key field type
@@ -130,4 +128,4 @@ STATICFILES_DIRS = [str(BASE_DIR / 'static')]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'list'
+LOGIN_REDIRECT_URL = 'create'
