@@ -10,8 +10,10 @@
 {% if user.is_authenticated %}
 <div class="container">
     <div class="alert alert-success" role="alert">
-        <p>タイトル:{{object.title}}</p>
-        <p>投稿者:{{object.content}}</p>
+        <!-- <p>タイトル:{{object.title}}</p>
+        <p>投稿者:{{object.content}}</p> -->
+        <p>タイトル:{{object_list.title}}</p>
+        <p>投稿者:{{object_list.content}}</p>
         <!-- <p><img src="{{object.sns_image.url}}" width=300></p> -->
         <!-- {% comment %} <a href="#" class="btn btn-primary" role="button" aria-pressed="true">いいねする</a> {% endcomment %} -->
         <!-- {% comment %} <a href="{% url 'good' object.pk %}" class="btn btn-primary" role="button" aria-pressed="true">いいねする</a> {% endcomment %} -->

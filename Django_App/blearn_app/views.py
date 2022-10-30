@@ -33,24 +33,24 @@ def loginfunc(request):
             return  redirect('signup')
     return render(request,'login.html', {})
     
-def listfunc(request,pk):
-    # object_list = BoardModel.objects.get(pk=pk)
-    # return render(request, 'list.html',{'object_list':object_list})
-    object = get_object_or_404(User, pk=pk)
-    return render(request, 'list.html', {'object':object})
+def listfunc(request):
+    object_list = BoardModel.objects.all()
+    return render(request, 'list.html',{'object_list':object_list})
+    # object = get_object_or_404(User, pk=pk)
+    # return render(request, 'list.html', {'object':object})
 
 def logoutfunc(request):
     logout(request)
     return redirect('login')
 
-# def detailfunc(request,pk):
-#     object = get_object_or_404(BoardModel, pk=pk)
-#     return render(request, 'detail.html', {'object':object})
+def detailfunc(request,pk):
+    object = get_object_or_404(BoardModel, pk=pk)
+    return render(request, 'detail.html', {'object':object})
 
 
 class BoardCreate(CreateView):
     template_name = 'create.html'
     model = BoardModel
     fields = ('title', 'content')
-    # success_url = reverse_lazy('list')
+    success_url = reverse_lazy('list')
 
