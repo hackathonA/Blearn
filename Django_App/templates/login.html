@@ -24,8 +24,11 @@
     <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
     <a href="{% url 'signup' %}">新規登録</a>
     {{ error }}
-    <!-- <p class="mt-5 mb-3 text-muted">&copy; 2017-2022</p> -->
+    <br>
+    <a href="{% url 'social:begin' 'google-oauth2' %}">Googleでログイン</a>
+
   </form>
-  <!-- {% comment %} </main> {% endcomment %} -->
+
+
 </body>
 {% endblock content %}
