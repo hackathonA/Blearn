@@ -30,7 +30,7 @@ def loginfunc(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('create')
+            return redirect('list')
         else:
             # return render(request,'signup.html', {})
             return  redirect('signup')
