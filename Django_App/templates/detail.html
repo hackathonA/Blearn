@@ -3,6 +3,7 @@
 {% block header %}
 <div class="alert alert-primary" role="alert">
     <h3>detail page</h3>
+    <a href="{% url 'list' %}" class="btn btn-secondary" role="button" aria-pressed="true">マイページへ</a>
 </div>
 {% endblock header %}
 
@@ -10,17 +11,17 @@
 {% if user.is_authenticated %}
 <div class="container">
     <div class="alert alert-success" role="alert">
-        <!-- <p>タイトル:{{object.title}}</p>
-        <p>投稿者:{{object.content}}</p> -->
-        <p>タイトル:{{object_list.title}}</p>
-        <p>投稿者:{{object_list.content}}</p>
-        <!-- <p><img src="{{object.sns_image.url}}" width=300></p> -->
-        <!-- {% comment %} <a href="#" class="btn btn-primary" role="button" aria-pressed="true">いいねする</a> {% endcomment %} -->
-        <!-- {% comment %} <a href="{% url 'good' object.pk %}" class="btn btn-primary" role="button" aria-pressed="true">いいねする</a> {% endcomment %} -->
-        <!-- <a href="{% url 'good' object.pk %}" class="btn btn-primary" role="button" aria-pressed="true"><svg
-                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-hand-thumbs-up" viewBox="0 0 16 16"> -->
-        <!-- <a href="{% url 'read' object.pk %}" class="btn btn-secondary" role="button" aria-pressed="true">既読にする</a> -->
+        <p>タイトル:{{object.title}}</p>
+        <p>隠したい単語:{{object.blur_word}}</p>
+        <p>説明文:<P>{{object.content}}</p></p>
+        {% comment %} <p><img src="{{object.sns_image.url}}" width=300></p> {% endcomment %}
+        {% comment %} <a href="#" class="btn btn-primary" role="button" aria-pressed="true">いいねする</a> {% endcomment %}
+        {% comment %} <a href="{% url 'good' object.pk %}" class="btn btn-primary" role="button" aria-pressed="true">いいねする</a> {% endcomment %}
+        {% comment %} <a href="{% url 'good' object.pk %}" class="btn btn-primary" role="button" aria-pressed="true"><svg {% endcomment %}
+                {% comment %} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" {% endcomment %}
+                {% comment %} class="bi bi-hand-thumbs-up" viewBox="0 0 16 16"> {% endcomment %}
+        <a href="{% url 'update' object.pk %}" class="btn btn-secondary" role="button" aria-pressed="true">編集</a>
+        <a href="{% url 'delete' object.pk %}" class="btn btn-secondary" role="button" aria-pressed="true">削除</a>
     </div>
 </div>
 {% else %}
