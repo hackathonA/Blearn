@@ -23,7 +23,7 @@ class Content(models.Model):
     word = models.CharField(max_length=140)
     content = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, verbose_name=("カテゴリ名"), on_delete=models.CASCADE, default='0')
+    category = models.ForeignKey(Category, verbose_name=("カテゴリ名"), on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.title
