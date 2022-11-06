@@ -1,4 +1,3 @@
-from typing import List
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.models import User
 from django.db import IntegrityError
@@ -72,6 +71,10 @@ class ContentList(LoginRequiredMixin, ListView):
 class ContentDetail(DetailView):
     template_name = 'detail.html'
     model = Content
+
+    # blur_wordの中の単語とcontentの中の文章を比較して、blur_wordに一致する単語にのみblurをかける
+    # def get_queryset(self):
+    #     Content.objects.filter
 
 class ContentUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name = 'update.html'
