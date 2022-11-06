@@ -20,7 +20,6 @@ class Content(models.Model):
     # blurがかかった単語
     blur_word = models.CharField(max_length=140)
     # blurのかかっていない単語
-    word = models.CharField(max_length=140)
     content = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, verbose_name=("カテゴリ名"), on_delete=models.CASCADE, blank=True, null=True)

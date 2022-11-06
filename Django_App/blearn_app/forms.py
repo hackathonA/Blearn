@@ -6,5 +6,3 @@ class ContentForm(forms.ModelForm):
     class Meta:
         model = Content
         fields = ['title', 'blur_word', 'content', 'category']
-
-
