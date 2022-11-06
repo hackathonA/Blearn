@@ -73,10 +73,10 @@ class ContentDetail(DetailView):
     model = Content
 
     # 詳細画面でcontentの中にblur_wordと一致するものがあれば、blurをかける
-    
     # def get_queryset(self):
         
-    #     match_word = Content.objects.filter()
+    #     match_word = Content.objects.filter('blur_word' == 'content')
+    #     return match_word
 
 
 
