@@ -83,7 +83,7 @@
                         {% for item in object_list %}
                             <div class="alert alert-success" role="alert">
                                 <!-- <p>category:<a href="{%url 'detail' item.pk%}">{{item.title}}</a></p> -->
-                                <p>タイトル:<a href="{% url 'detail' item.pk %}"></a>{{item.title}}</p>
+                                <p>タイトル:<a href="{% url 'detail' item.pk %}">{{item.title}}</a></p>
                                 <p>投稿者:{{item.user.username}}</p>
                                 <!-- {% comment %} <p>category:{{item.title}}</a></p> {% endcomment %} -->
                                 <a href="#" class="btn btn-secondary disabled" role="button" aria-pressed="true">既読</a>
