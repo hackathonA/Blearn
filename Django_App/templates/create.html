@@ -1,5 +1,6 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'mypage.html' %}
+
+{% block main %}
 <a href="{% url 'list' %}" class="btn btn-secondary" role="button" aria-pressed="true">マイページへ</a>
 {% if user.is_authenticated %}
 <form method="POST" enctype='multipart/form-data'> {% csrf_token %}
@@ -14,4 +15,4 @@
 please login
 <a href="{% url 'login' %}">Loginしてにょ</a>
 {% endif %}
-{% endblock content %}
+{% endblock main %}
