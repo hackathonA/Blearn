@@ -15,4 +15,7 @@ urlpatterns = [
     path('create/', ContentCreate.as_view(), name='create'),
     path('update/<int:pk>', ContentUpdate.as_view(), name='update'),
     path('delete/<int:pk>', ContentDelete.as_view(), name='delete'),
+
+    path("sample/<int:pk>/exec/", views.exec_ajax, name='exec'),
+    path("sample/<int:pk>/exec_another/", views.exec_another_ajax, name='exec_another'),
 ]

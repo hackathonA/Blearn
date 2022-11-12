@@ -54,6 +54,27 @@ class ContentCreate(CreateView):
     template_name = 'create.html'
     form_class = ContentForm
     success_url = reverse_lazy('list')
+    
+    if request.method == "POST":
+    if "btn_preview" in request.POST:
+        # ①
+        print("確定ボタンが押下された")
+    elif "btn_create"  in request.POST:
+        # ②
+        print("キャンセルボタン押下された")
+
+
+    def form_valid(self, form):
+        data = form.cleaned_data
+        blur_word = data["blur_word"]
+        content = data["content"]
+        
+        # ここで変換
+        new_content = content.replace(blur_word, 'xxx')
+        
+        # テンプレートに渡す
+        ctxt = self.get_context_data(new_content=new_content, form=form)
+        return self.render_to_response(ctxt)
 
     # 投稿者ユーザーとリクエストユーザーを紐付ける
     def form_valid(self, form):
