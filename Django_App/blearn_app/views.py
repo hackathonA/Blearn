@@ -55,10 +55,39 @@ class ContentCreate(CreateView):
     form_class = ContentForm
     success_url = reverse_lazy('list')
 
-    # 投稿者ユーザーとリクエストユーザーを紐付ける
+    # def form_valid(self, form):
+    #     data = form.cleaned_data
+    #     blur_word = data['blur_word']
+    #     content = data['content']
+
+    #     new_content = content.replace(blur_word, 'xxx')
+
+    #     ctxt = self.get_context_data(new_content=new_content, form=form)
+    #     return self.render_to_response(ctxt)
+
+    # # 投稿者ユーザーとリクエストユーザーを紐付ける
+    # def form_valid(self, form):
+    #     form.instance.user = self.request.user
+    #     return super().form_valid(form)
+
+
     def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+
+        if 'btn_replace':
+
+            data = form.cleaned_data
+            blur_word = data['blur_word']
+            content = data['content']
+
+            new_content = content.replace(blur_word, 'xxx')
+
+            ctxt = self.get_context_data(new_content=new_content, form=form)
+            return self.render_to_response(ctxt)
+
+        elif 'btn_create':
+            # 投稿者ユーザーとリクエストユーザーを紐付ける
+            form.instance.user = self.request.user
+            return super().form_valid(form)
 
 
 class ContentList(LoginRequiredMixin, ListView):

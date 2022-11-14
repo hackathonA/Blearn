@@ -4,12 +4,28 @@
 <a href="{% url 'list' %}" class="btn btn-secondary" role="button" aria-pressed="true">マイページへ</a>
 {% if user.is_authenticated %}
 <form method="POST" enctype='multipart/form-data'> {% csrf_token %}
-    {{form.as_p}}
-    {% comment %} <p>タイトル:<input type="text" name='title'></p>
-    <p>説明文:<input type="text" name='content'></p>
-    <input type="hidden" name='author' value='{{ user.username }}'>
-    <!-- <p><input type="file" name='sns_image'></p> --> {% endcomment %}
-    <input type="submit" value="作成">
+
+    <div class="row">
+        <div class="col-sm">
+            <h2>変換前</h2>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                <p>
+                    <label>{{ field.label }}</label>
+                    {{ field }}
+                </p>
+                {% endfor %}
+                <input type="submit" name="btn_replace" value="変換" class="btn btn-info" />
+                <input type="submit" name="btn_create" value="作成" class="btn btn-info" />
+            </form>
+        </div>
+        <div class="col-sm">
+            <h2>変換後</h2>
+            <p>{{ new_content }}</p>
+        </div>
+    </div>
+
 </form>
 {% else %}
 please login
