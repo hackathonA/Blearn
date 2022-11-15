@@ -4,7 +4,7 @@ from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
+from django.views.generic import View, CreateView, ListView, DetailView, UpdateView, DeleteView
 
 from blearn_app.models import Content
 from .forms import ContentForm
@@ -55,26 +55,19 @@ class ContentCreate(CreateView):
     form_class = ContentForm
     success_url = reverse_lazy('list')
 
-    # def form_valid(self, form):
-    #     data = form.cleaned_data
-    #     blur_word = data['blur_word']
-    #     content = data['content']
-
-    #     new_content = content.replace(blur_word, 'xxx')
-
-    #     ctxt = self.get_context_data(new_content=new_content, form=form)
-    #     return self.render_to_response(ctxt)
-
-    # # 投稿者ユーザーとリクエストユーザーを紐付ける
-    # def form_valid(self, form):
-    #     form.instance.user = self.request.user
-    #     return super().form_valid(form)
-
-
     def form_valid(self, form):
 
-        if 'btn_replace':
+        if 'btn_create' in self.request.POST:
 
+        # 投稿者ユーザーとリクエストユーザーを紐付ける
+            form.instance.user = self.request.user
+            return super().form_valid(form)
+
+    # def post(self, request):
+    #     form = ContentForm
+
+        elif 'btn_replace' in self.request.POST:
+            form.is_valid
             data = form.cleaned_data
             blur_word = data['blur_word']
             content = data['content']
@@ -84,10 +77,12 @@ class ContentCreate(CreateView):
             ctxt = self.get_context_data(new_content=new_content, form=form)
             return self.render_to_response(ctxt)
 
-        elif 'btn_create':
-            # 投稿者ユーザーとリクエストユーザーを紐付ける
-            form.instance.user = self.request.user
-            return super().form_valid(form)
+class Index(View):
+    form_class = ContentForm
+
+    
+
+    
 
 
 class ContentList(LoginRequiredMixin, ListView):
