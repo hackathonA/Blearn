@@ -3,7 +3,27 @@
 
 {% block content %}
 <form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="編集">
+    
+    <div class="row">
+        <div class="col-sm">
+            <h2>変換前</h2>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                <p>
+                    <label>{{ field.label }}</label>
+                    {{ field }}
+                </p>
+                {% endfor %}
+                <input type="submit" name="btn_replace" value="変換" class="btn btn-info" />
+                <input type="submit" name="btn_create" value="作成" class="btn btn-info" />
+            </form>
+        </div>
+        <div class="col-sm">
+            <h2>変換後</h2>
+            <p>{{ new_content }}</p>
+        </div>
+    </div>
+
 </form>
 {% endblock content %}

@@ -63,9 +63,6 @@ class ContentCreate(CreateView):
             form.instance.user = self.request.user
             return super().form_valid(form)
 
-    # def post(self, request):
-    #     form = ContentForm
-
         elif 'btn_replace' in self.request.POST:
             form.is_valid
             data = form.cleaned_data
@@ -113,6 +110,25 @@ class ContentUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     # fieldに入っているデータをModelから持ってくるのに必要
     model = Content
     form_class = ContentForm
+
+    def form_valid(self, form):
+
+        if 'btn_create' in self.request.POST:
+
+        # 投稿者ユーザーとリクエストユーザーを紐付ける
+            form.instance.user = self.request.user
+            return super().form_valid(form)
+
+        elif 'btn_replace' in self.request.POST:
+            form.is_valid
+            data = form.cleaned_data
+            blur_word = data['blur_word']
+            content = data['content']
+
+            new_content = content.replace(blur_word, 'xxx')
+
+            ctxt = self.get_context_data(new_content=new_content, form=form)
+            return self.render_to_response(ctxt)
 
     def get_success_url(self, **kwargs):
         '''編集完了後の遷移先'''
