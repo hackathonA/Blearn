@@ -29,36 +29,32 @@ def loginfunc(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('list')
+            return redirect('create')
         else:
-            # return render(request,'signup.html', {})
             return  redirect('signup')
     return render(request,'login.html', {})
-
-# def listfunc(request):
-#     object_list = BoardModel.objects.all()
-#     return render(request, 'list.html',{'object_list':object_list})
-#     # object = get_object_or_404(User, pk=pk)
-#     # return render(request, 'list.html', {'object':object})
 
 def logoutfunc(request):
     logout(request)
     return redirect('login')
 
-# def detailfunc(request,pk):
-#     object = get_object_or_404(BoardModel, pk=pk)
-#     return render(request, 'detail.html', {'object':object})
-
 
 class ContentCreate(CreateView):
     template_name = 'create.html'
     form_class = ContentForm
-    success_url = reverse_lazy('list')
+    success_url = reverse_lazy('create')
 
     # 投稿者ユーザーとリクエストユーザーを紐付ける
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+    def get_form_kwargs(self, *args, **kwargs):
+        kwgs = super().get_form_kwargs(*args, **kwargs)
+        category_choice = (("1", "network"), ("2", "web"), ("3", "linux"),("4", "git"))
+        kwgs["categories"] = category_choice
+        return kwgs
+
 
 
 class ContentList(LoginRequiredMixin, ListView):
