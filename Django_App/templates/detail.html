@@ -27,11 +27,24 @@
 {% if user.is_authenticated %}
 <div class="container">
     <div class="alert alert-success" role="alert">
-        <p>タイトル:{{object.title}}</p>
+    
+    <div class="row">
+
+        <p>{{object.blur_word}}</p>
+        
+
+        {% comment %} <p>タイトル:{{object.title}}</p>
         <p>隠したい単語:見たい人は、クリックしてね！</p>
         <input type="checkbox" id="clickblur">
         <label id="blur_word" for="clickblur">{{object.blur_word}}</label>
-        <p>説明文:<P>{{object.content}}</p></p>
+        <p>説明文:<P>{{object.new_content}}</p></p>
+
+        <div class="col-sm">
+            <h2>変換後</h2>
+            <p>{{ object_list }}</p>
+        </div> {% endcomment %}
+
+    </div>
 
         {% comment %} <p><img src="{{object.sns_image.url}}" width=300></p> {% endcomment %}
         {% comment %} <a href="#" class="btn btn-primary" role="button" aria-pressed="true">いいねする</a> {% endcomment %}

@@ -70,8 +70,12 @@ class ContentCreate(CreateView):
             content = data['content']
 
             new_content = content.replace(blur_word, 'xxx')
-
             ctxt = self.get_context_data(new_content=new_content, form=form)
+            # new_contentをContentのオブジェクトとして保存
+            
+            ContentForm
+            new_content.save()
+
             return self.render_to_response(ctxt)
 
 class Index(View):
@@ -92,6 +96,9 @@ class ContentList(LoginRequiredMixin, ListView):
 class ContentDetail(DetailView):
     template_name = 'detail.html'
     model = Content
+
+    
+
 
     # 詳細画面でcontentの中にblur_wordと一致するものがあれば、blurをかける
     # def get_queryset(self):
