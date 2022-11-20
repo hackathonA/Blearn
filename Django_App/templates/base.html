@@ -11,11 +11,25 @@
     {% block customcss %}
     {% endblock customcss %}
 
+    {% block customcss1 %}
+    {% endblock customcss1 %}
+
     <title>Hello, world!</title>
   </head>
+
+  <div class=" fixed-top">
     {% block header %}
     {% endblock header %}
+  </div>
 
     {% block content %}
+
+    {% block category %}
+    {% endblock category %}
+
+    {% block main %}
+    {% endblock main %}
+
     {% endblock content %}
+
 </html>
