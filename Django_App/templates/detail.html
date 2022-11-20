@@ -1,12 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'create.html' %}
 
-{% block header %}
-<div class="alert alert-primary" role="alert">
-    <h3>detail page</h3>
-    <a href="{% url 'list' %}" class="btn btn-secondary" role="button" aria-pressed="true">マイページへ</a>
-</div>
 
-{% block customcss %}
+{% block customcss1 %}
 <style>
     #blur_word {
         filter:blur(5px);
@@ -19,11 +14,9 @@
     }
 </style>
 
-{% endblock customcss %}
+{% endblock customcss1 %}
 
-{% endblock header %}
-
-{% block content %}
+{% block main %}
 {% if user.is_authenticated %}
 <div class="container">
     <div class="alert alert-success" role="alert">
@@ -39,4 +32,4 @@
 {% else %}
 please login
 {% endif %}
-{% endblock content %}
+{% endblock main %}
