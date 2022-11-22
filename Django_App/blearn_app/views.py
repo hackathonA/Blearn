@@ -8,6 +8,7 @@ from django.views.generic import CreateView, ListView, DetailView, UpdateView, D
 
 from blearn_app.models import Content
 from .forms import ContentForm
+import copy
 # Create your views here.
 
 def signupfunc(request):
@@ -54,27 +55,31 @@ class ContentCreate(CreateView):
     
         elif 'btn_replace' in self.request.POST:
             
-            form.is_valid
+            # form.is_valid
             data = form.cleaned_data
+            title = data['title']
             blur_word = data['blur_word']
             content = data['content']
-
-            new_content = content.replace(blur_word, 'xxx')
-            ctxt = self.get_context_data(new_content=new_content, form=form)
-            # new_contentをContentのオブジェクトとして保存
-        
+            # new_content = data['new_content']
+            blur_content = content.replace(blur_word, 'xxx')
+            # new_content = copy.deepcopy(blur_content)
+            # new_content = data[blur_content]
+            ctxt = self.get_context_data(blur_content=blur_content, form=form)
+            n_content = Content(content=content, title=title, new_content=blur_content, blur_word=blur_word,user=self.request.user,category=data['category'])
+            n_content.save()
+        return self.render_to_response(ctxt)
+        # return self.render(ctxt, 'create.html')
+    
+    
             # ContentForm
             # new_content.save()
 
-            return self.render_to_response(ctxt)
+            
 
 
     def get_form_kwargs(self, *args, **kwargs):
         kwgs = super().get_form_kwargs(*args, **kwargs)
         category_choice = ((1, "network"), (2, "web"), (3, "linux"),(4, "git"))
-        # name = models.CharaField(max_length=60)
-        # shirt_size = models.CharField(max_length=2, choices=category_choice)
-
         kwgs["categories"] = category_choice
         return kwgs
     
@@ -90,18 +95,6 @@ class ContentList(LoginRequiredMixin, ListView):
     
     def get_queryset(self):
         return Content.objects.filter(user=self.request.user,category="1")
-    
-    # def get_queryset1(self):
-    #     return Category.objects.get(category_name=1)
-    
-    
-   
-    # def get_context_data(self, **kwargs):
-    # # Call the base implementation first to get a context
-    #     context = super(ContentList, self).get_context_data(**kwargs)
-    #     context['data_name'] = Content.objects.values('category').distinct()
-    #     return context
-        
 
     
 class ContentList2(LoginRequiredMixin, ListView):
@@ -127,19 +120,25 @@ class ContentList4(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Content.objects.filter(user=self.request.user,category="4")
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
 class ContentDetail(DetailView):
     template_name = 'detail.html'
     model = Content
+    
+    
+    def __str__(self):
+        content = Content.content
+        blur_word = Content.blur_word
+        new_content = content.replace(blur_word,'----')
+        new_content = Content.new_content
+        
+        # return render('detail.html',new_content=new_content)
+        ctxt = self.get_context_data(new_content=new_content)
+        return self.render_to_response(ctxt)
+        
+    
+    
+        
     
 
     # 詳細画面でcontentの中にblur_wordと一致するものがあれば、blurをかける

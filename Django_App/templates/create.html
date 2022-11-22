@@ -128,14 +128,15 @@
                     {{ field }}
                 </p>
                 {% endfor %}
-                <input type="submit" name="btn_replace" value="変換" class="btn btn-info" />
-                <input type="submit" name="btn_create" value="作成" class="btn btn-info" />
+                <input type="submit" name="btn_replace" value="作成" class="btn btn-info" />
+             
             </form>
         </div>
-        <div class="col-sm">
+        {% comment %} <div class="col-sm">
             <h2>変換後</h2>
-            <p>{{ new_content }}</p>
-        </div>
+            <p>{{ blur_content }}</p>
+
+        </div> {% endcomment %}
     </div>
 
 </form>
