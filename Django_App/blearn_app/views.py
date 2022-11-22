@@ -4,11 +4,11 @@ from django.db import IntegrityError, models
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView, View
+from django.views.generic import CreateView, ListView, DetailView,  DeleteView, View
 
 from blearn_app.models import Content
 from .forms import ContentForm
-import copy
+
 # Create your views here.
 
 def signupfunc(request):
@@ -153,28 +153,28 @@ class ContentDetail(DetailView):
     # def get_queryset(self):
     #     Content.objects.filter
 
-class ContentUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    template_name = 'update.html'
-    # fieldに入っているデータをModelから持ってくるのに必要
-    model = Content
-    form_class = ContentForm
+# class ContentUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+#     template_name = 'update.html'
+#     # fieldに入っているデータをModelから持ってくるのに必要
+#     model = Content
+#     form_class = ContentForm
 
-    def get_success_url(self, **kwargs):
-        '''編集完了後の遷移先'''
-        pk = self.kwargs["pk"]
-        return reverse_lazy('detail', kwargs={"pk":pk})
+#     def get_success_url(self, **kwargs):
+#         '''編集完了後の遷移先'''
+#         pk = self.kwargs["pk"]
+#         return reverse_lazy('detail', kwargs={"pk":pk})
 
-    def test_func(self, **kwargs):
-        '''アクセスできるユーザーを制限'''
-        pk = self.kwargs["pk"]
-        post = Content.objects.get(pk=pk)
-        return (post.user == self.request.user)
+#     def test_func(self, **kwargs):
+#         '''アクセスできるユーザーを制限'''
+#         pk = self.kwargs["pk"]
+#         post = Content.objects.get(pk=pk)
+#         return (post.user == self.request.user)
 
 class ContentDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     '''投稿削除ページ'''
     model = Content
     template_name = 'delete.html'
-    success_url = reverse_lazy('list')
+    success_url = reverse_lazy('create')
 
     def test_func(self, **kwargs):
         '''アクセスできるユーザーを制限'''
