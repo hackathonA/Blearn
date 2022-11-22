@@ -1,4 +1,8 @@
 {% extends 'create.html' %}
+{% load static %}
+
+<link href="{% static 'style.css' %}" rel="stylesheet">
+
 
 {% block category %}
 
@@ -6,16 +10,16 @@
 {% if forloop.first %}
 
 {% if item.category == 1%}
-<h1>Network</h1>
+<p class="h3 font_test">~Network~</p>
 {% endif %}
 {% if item.category == 2%}
-Web
+<p class="h3 font_test">~Web~</p>
 {% endif %}
 {% if item.category == 3%}
-Linux
+<p class="h3 font_test">~Linux~</p>
 {% endif %}
 {% if item.category == 4%}
-Git
+<p class="h3 font_test">~Git~</p>
 {% endif %}
 
 {% endif %}
