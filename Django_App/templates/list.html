@@ -1,12 +1,12 @@
 {% extends 'create.html' %}
 
 {% block category %}
- 
+
 {% for item in object_list%}
 {% if forloop.first %}
 
 {% if item.category == 1%}
-Network
+<h1>Network</h1>
 {% endif %}
 {% if item.category == 2%}
 Web
@@ -23,12 +23,12 @@ Git
 {% endblock category %}
 
 {% block main %}
-    {% for item in object_list %}
-        <div class="alert alert-success" role="alert">
-        <p>タイトル:<a href="{% url 'detail' item.pk %}">{{item.title}}</a></p>
-        <p>投稿者:{{item.user.username}}</p>
-        <a href="#" class="btn btn-secondary disabled" role="button" aria-pressed="true">既読</a>
-        <a href="#" class="btn btn-secondary disabled" role="button" aria-pressed="true">削除する</a>
-        </div>
-    {% endfor %}
+{% for item in object_list %}
+<div class="alert alert-success" role="alert">
+    <p>タイトル:<a href="{% url 'detail' item.pk %}">{{item.title}}</a></p>
+    <p>投稿者:{{item.user.username}}</p>
+    <a href="#" class="btn btn-secondary disabled" role="button" aria-pressed="true">既読</a>
+    <a href="#" class="btn btn-secondary disabled" role="button" aria-pressed="true">削除する</a>
+</div>
+{% endfor %}
 {% endblock main %}

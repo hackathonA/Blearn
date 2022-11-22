@@ -24,7 +24,8 @@
         <p>隠したい単語:見たい人は、クリックしてね！</p>
         <input type="checkbox" id="clickblur">
         <label id="blur_word" for="clickblur">{{object.blur_word}}</label>
-        <p>説明文:<P>{{object.content}}</p></p>
+        <p>説明文:<P>{{object.new_content}}</p></p>
+        
         <a href="{% url 'update' object.pk %}" class="btn btn-secondary" role="button" aria-pressed="true">編集</a>
         <a href="{% url 'delete' object.pk %}" class="btn btn-secondary" role="button" aria-pressed="true">削除</a>
     </div>
@@ -32,4 +33,5 @@
 {% else %}
 please login
 {% endif %}
+{{new_content}}
 {% endblock main %}
