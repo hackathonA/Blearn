@@ -28,6 +28,33 @@
             <div class="header-icon">
                 <ul>
                     <li>
+                        <div>
+                        {% comment %} プロフィール画像を追加 {% endcomment %}
+                            <script type="text/javascript">
+                                const imglist = new Array(
+                                "{% static 'profileimg/profile01.png' %}",
+                                "{% static 'profileimg/profile02.png' %}",
+                                "{% static 'profileimg/profile03.png' %}",
+                                "{% static 'profileimg/profile04.png' %}",
+                                "{% static 'profileimg/profile05.png' %}",
+                                "{% static 'profileimg/profile06.png' %}",
+                                "{% static 'profileimg/profile07.png' %}",
+                                "{% static 'profileimg/profile08.png' %}",
+                                "{% static 'profileimg/profile09.png' %}"
+                                );
+                                const selectnum = Math.floor(Math.random() * imglist.length);
+                                const output = "<img id='profileimg' src=" + imglist[selectnum] + ">";
+                                document.write(output);
+
+                                const profileimgcss = document.getElementById("profileimg");
+                                profileimgcss.style.width = "50px";
+                                profileimgcss.style.height = "50px";
+                                profileimgcss.style.borderRadius = "50%";
+                                profileimgcss.style.objectFit = "cover";
+                            </script>
+                        </div>
+                    </li>
+                    <li>
                         <a class="menu newtext-icon" href="{% url 'create' %}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="50" fill="currentColor"
                                 class="bi bi-file-earmark-plus" viewBox="0 4 16 16">
