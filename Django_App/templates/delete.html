@@ -1,8 +1,4 @@
 {% block content %}
-{% comment %} <form method="post">{% csrf_token %}
-    <p>本当に削除してもよろしいですか?</p>
-    <input type="submit" value="削除する">
-</form> {% endcomment %}
 
 <div class="modal fade"  id="deleteModal-{{object.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">

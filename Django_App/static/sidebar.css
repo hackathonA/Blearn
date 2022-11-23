@@ -75,3 +75,12 @@ a:visited {
 body {
     padding-top: 8rem;
 }
+
+#title {
+    padding-left: 20px
+}
+
+#user-icon {
+    margin-top: 18px;
+    margin-right: 8px;
+}
