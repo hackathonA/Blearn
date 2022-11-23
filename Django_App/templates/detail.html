@@ -27,7 +27,9 @@
         <p>説明文:<P>{{object.new_content}}</p></p>
         
         {% comment %} <a href="{% url 'update' object.pk %}" class="btn btn-secondary" role="button" aria-pressed="true">編集</a>  {% endcomment %}
-        <a href="{% url 'delete' object.pk %}" class="btn btn-secondary" role="button" aria-pressed="true">削除</a>
+        {% comment %} <a href="{% url 'delete' object.pk %}" class="btn btn-secondary" role="button" aria-pressed="true">削除</a> {% endcomment %}
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{object.pk}}">削除</button>
+        {% include 'delete.html' %}
     </div>
 </div>
 {% else %}
