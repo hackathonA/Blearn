@@ -147,8 +147,9 @@
                     {% csrf_token %}
                     
                     {{ form }}
-                    <div class="form-group text-right" style="padding:20px 0">
-                        <input type="submit" value="作成" class="btn btn-info" />
+                        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#deleteModal-{{object.pk}}">作成
+                        </button>
+                         {% include 'success.html' %}
                 </form>
             </div>
         </div>
