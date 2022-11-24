@@ -48,13 +48,6 @@ class ContentCreate(CreateView):
 
     # 投稿者ユーザーとリクエストユーザーを紐付ける
     def form_valid(self, form):
-        if 'btn_create' in self.request.POST:
-
-            form.instance.user = self.request.user
-            return super().form_valid(form)
-    
-        elif 'btn_replace' in self.request.POST:
-            
             # form.is_valid
             data = form.cleaned_data
             title = data['title']
@@ -64,10 +57,9 @@ class ContentCreate(CreateView):
             blur_content = content.replace(blur_word, 'xxx')
             # new_content = copy.deepcopy(blur_content)
             # new_content = data[blur_content]
-            ctxt = self.get_context_data(blur_content=blur_content, form=form)
             n_content = Content(content=content, title=title, new_content=blur_content, blur_word=blur_word,user=self.request.user,category=data['category'])
             n_content.save()
-        return self.render_to_response(ctxt)
+            return redirect('create')
         # return self.render(ctxt, 'create.html')
     
     
