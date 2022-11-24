@@ -47,6 +47,7 @@ class ContentCreate(CreateView):
     success_url = reverse_lazy('create')
 
     # 投稿者ユーザーとリクエストユーザーを紐付ける
+    
     def form_valid(self, form):            
         data = form.cleaned_data
         title = data['title']
@@ -59,13 +60,10 @@ class ContentCreate(CreateView):
         n_content = Content(content=content, title=title, new_content=blur_content, blur_word=blur_word,user=self.request.user,category=data['category'])
         n_content.save()
         return redirect('create')
+
         # return self.render(ctxt, 'create.html')
     
-    
-            # ContentForm
-            # new_content.save()
-
-            
+   
 
 
     def get_form_kwargs(self, *args, **kwargs):
