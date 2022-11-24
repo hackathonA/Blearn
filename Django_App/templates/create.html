@@ -145,12 +145,7 @@
             <div>
                 <form method="post">
                     {% csrf_token %}
-                    {% comment %} {% for field in form %}
-                    <p>
-                        <label>{{ field.label }}</label>                    
-                        {{ field }}
-                    </p>
-                    {% endfor %} {% endcomment %}
+                    
                     {{ form }}
                     <div class="form-group text-right" style="padding:20px 0">
                         <input type="submit" value="作成" class="btn btn-info" />

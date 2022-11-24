@@ -28,12 +28,12 @@
         <input type="checkbox" id="clickblur">
         <label id="blur_word" for="clickblur">{{object.content}}</label>
 
-        
+        <div>
         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{object.pk}}">削除</button>
         {% include 'delete.html' %}
+        </div>
 
     </div>
-    <a href="{% url 'delete' object.pk %}" class="btn btn-secondary" role="button" aria-pressed="true">削除</a>
 </div>
 {% else %}
 please login
