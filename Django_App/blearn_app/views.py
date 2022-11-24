@@ -47,26 +47,23 @@ class ContentCreate(CreateView):
     success_url = reverse_lazy('create')
 
     # 投稿者ユーザーとリクエストユーザーを紐付ける
-    def form_valid(self, form):
-            # form.is_valid
-            data = form.cleaned_data
-            title = data['title']
-            blur_word = data['blur_word']
-            content = data['content']
-            # new_content = data['new_content']
-            blur_content = content.replace(blur_word, 'xxx')
-            # new_content = copy.deepcopy(blur_content)
-            # new_content = data[blur_content]
-            n_content = Content(content=content, title=title, new_content=blur_content, blur_word=blur_word,user=self.request.user,category=data['category'])
-            n_content.save()
-            return redirect('create')
+    
+    def form_valid(self, form):            
+        data = form.cleaned_data
+        title = data['title']
+        blur_word = data['blur_word']
+        content = data['content']
+        # blur_wordにタグをつけてblur変換
+        blur_content = content.replace(blur_word, '<label id="blur_word">'+ blur_word +'</label>')
+        ctxt = self.get_context_data(blur_content=blur_content, form=form)
+        # Contentsテーブルに登録
+        n_content = Content(content=content, title=title, new_content=blur_content, blur_word=blur_word,user=self.request.user,category=data['category'])
+        n_content.save()
+        return redirect('create')
+
         # return self.render(ctxt, 'create.html')
     
-    
-            # ContentForm
-            # new_content.save()
-
-            
+   
 
 
     def get_form_kwargs(self, *args, **kwargs):
@@ -121,11 +118,11 @@ class ContentDetail(DetailView):
     def __str__(self):
         content = Content.content
         blur_word = Content.blur_word
-        new_content = content.replace(blur_word,'----')
+        # new_content = content.replace(blur_word,'----')
         new_content = Content.new_content
         
         # return render('detail.html',new_content=new_content)
-        ctxt = self.get_context_data(new_content=new_content)
+        ctxt = self.get_context_data(new_content=new_content,content=content)
         return self.render_to_response(ctxt)
         
     
