@@ -60,8 +60,6 @@ class ContentCreate(CreateView):
         n_content = Content(content=content, title=title, new_content=blur_content, blur_word=blur_word,user=self.request.user,category=data['category'])
         n_content.save()
         return redirect('create')
-
-        # return self.render(ctxt, 'create.html')
     
    
 
@@ -80,7 +78,6 @@ class Index(View):
 class ContentList(LoginRequiredMixin, ListView):
     template_name = 'list.html'
     model = Content
-    # model2 = Category
     
     def get_queryset(self):
         return Content.objects.filter(user=self.request.user,category="1")
@@ -113,62 +110,17 @@ class ContentList4(LoginRequiredMixin, ListView):
 class ContentDetail(DetailView):
     template_name = 'detail.html'
     model = Content
-    
-    
-    def __str__(self):
-        content = Content.content
-        blur_word = Content.blur_word
-        # new_content = content.replace(blur_word,'----')
-        new_content = Content.new_content
-        
-        # return render('detail.html',new_content=new_content)
-        ctxt = self.get_context_data(new_content=new_content,content=content)
-        return self.render_to_response(ctxt)
-        
-    
-    
-        
-    
-
-    # 詳細画面でcontentの中にblur_wordと一致するものがあれば、blurをかける
-    # def get_queryset(self):
-        
-    #     match_word = Content.objects.filter('blur_word' == 'content')
-    #     return match_word
-
-
-
-    # blur_wordの中の単語とcontentの中の文章を比較して、blur_wordに一致する単語にのみblurをかける
-    # def get_queryset(self):
-    #     Content.objects.filter
-
-# class ContentUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-#     template_name = 'update.html'
-#     # fieldに入っているデータをModelから持ってくるのに必要
-#     model = Content
-#     form_class = ContentForm
-
-#     def get_success_url(self, **kwargs):
-#         '''編集完了後の遷移先'''
-#         pk = self.kwargs["pk"]
-#         return reverse_lazy('detail', kwargs={"pk":pk})
-
-#     def test_func(self, **kwargs):
-#         '''アクセスできるユーザーを制限'''
-#         pk = self.kwargs["pk"]
-#         post = Content.objects.get(pk=pk)
-#         return (post.user == self.request.user)
 
 class ContentDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    '''投稿削除ページ'''
+    # 投稿削除ページ
     model = Content
     template_name = 'delete.html'
     success_url = reverse_lazy('create')
 
     def test_func(self, **kwargs):
-        '''アクセスできるユーザーを制限'''
+        # アクセスできるユーザーを制限
         pk = self.kwargs["pk"]
         post = Content.objects.get(pk=pk)
         return (post.user == self.request.user)
 
-        # 表示するfieldをHTML上で決める
+       
